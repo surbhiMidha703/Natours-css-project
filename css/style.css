@@ -15,19 +15,46 @@ Transition property is mostly used when the elemnt is hovered on, clicked(active
 */
 
 
-* {
+/*  here '*' denotes all the elements on the page, we have also included
+psudo elements - before and after,
+border-sizing property will now be inherited from body element */
+
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+/* This is to set the root font size. By default the root font size 16px
+NOTE - 1rem = 10px,  rem always depends on the root font size, here it is 10px 
+
+NOTE - we avoid em, because that depends on parent font size, and involves lots of calculations*/
+html{
+    /* font-size: 10px; */
+    /* Now instead of putting 10px directly, lets convert this into % so that when the user changes the font size in the browser,
+    the font-size percentage is automatically calculated, 
+    at the moment if we want to keep it 10px, then its % will be :
+    10/16*100 = 62.5%
+    If the user now changes the default font size to 12px(or anything else) from the browser,
+    then the % will be recalculated and the html font size will be:
+    12/16*100 = 75%
+    This will then influence the subsequent rem sizes in the app */
+
+    font-size: 62.5%;
 }
 
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3rem;
+
+    /* this property helps to include padding and border to the width and height of the element so that the element does not look too big */
+    box-sizing: border-box;  
 }
 
 .header {
@@ -45,12 +72,12 @@ body {
 
 .logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo {
-    height: 35px;
+    height: 3.5rem;
 }
 
 .text-box {
@@ -68,14 +95,14 @@ body {
     /* to avoid shaking of the element that commonly happens in animation */
 
     backface-visibility: hidden;   
-    margin-bottom: 50px;;
+    margin-bottom: 6rem;
 }
 
 .heading-primary-main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -89,9 +116,9 @@ body {
 
 .heading-primary-sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;;
     font-weight: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
 
     animation: moveInRight 1s ease-out;
 
@@ -105,11 +132,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
 
     80% {
-        transform: translate(10px);
+        transform: translate(1rem);
     }
 
     100% {
@@ -121,11 +148,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80% {
-        transform: translate(-10px);
+        transform: translate(-1rem);
     }
 
     100% {
@@ -137,7 +164,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     100% {
@@ -150,22 +177,22 @@ body {
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     transition: all .2s;
-
     position: relative;
+    font-size: 1.6rem;
 }
 
 .btn:hover{
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
 }
 
 .btn:active{
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
 }
 
 .btn-white {
@@ -179,7 +206,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
