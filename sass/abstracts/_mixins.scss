@@ -1,0 +1,8 @@
+@mixin clearfix {
+    &::after {
+        content: "";  //content property is for the pseudo element to appear on the page and assigned it "" so that it is not visible(but is still there)
+
+        display: table;
+        clear: both;
+    }
+}
